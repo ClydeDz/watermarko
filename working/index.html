@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="./index.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <h1>Watermarko</h1>
+    <input type="text" value="Watermarko" id="watermarkText" />
+    <button id="generate">Generate preview</button>
+    <button type="button" onClick="download()">Download</button>
+    <input id="upload" type="file" accept="image/*" />
+    <div id="images" style="visibility: hidden;">      
+      <img id="watermakedImageWithText"/>
+    </div> 
+    <img id="originalImage" style="display: none;"/>
+    <a id="download" style="display: none;"></a>
+    <style>
+      #watermakedImageWithText {
+        width: 50%;
+      }
+    </style>  
+  </body>
+</html>
