@@ -1,19 +1,28 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  filename: 'watermarko.png',
-}
+  name: "watermarko",
+  extension: "png",
+  size: 1234,
+};
 
 export const imageSlice = createSlice({
-  name: 'imageSlice',
+  name: "imageSlice",
   initialState,
   reducers: {
     setFilename: (state, action) => {
-      state.filename = action.payload
+      state.name = action.payload;
+    },
+    setFileExtension: (state, action) => {
+      state.extension = action.payload;
+    },
+    setFileSize: (state, action) => {
+      state.size = action.payload;
     },
   },
-})
+});
 
-export const { setFilename } = imageSlice.actions
+export const { setFilename, setFileExtension, setFileSize } =
+  imageSlice.actions;
 
-export default imageSlice.reducer
+export default imageSlice.reducer;
