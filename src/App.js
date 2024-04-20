@@ -148,7 +148,7 @@ function App() {
       </div>
       
       <div>
-      <button type="button" onClick="download()">Download</button>
+      <button type="button" onClick={download()}>Download</button>
       </div>
     
       {/* <select name="cars" id="cars" onChange={e => setPosition(e.target.value)} value={position}>        
