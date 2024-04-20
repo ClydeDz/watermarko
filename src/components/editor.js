@@ -10,7 +10,7 @@ import {
   setTopPosition,
   setWatermarkText,
 } from "../redux/editorSlice";
-import { createWatermark, download } from "../helpers/utility";
+import { createWatermark, downloadWatermarkoImage } from "../helpers/utility";
 
 const DEBOUNCE_DELAY = 500;
 
@@ -25,7 +25,7 @@ function Editor() {
     topPosition,
     leftPosition,
   } = useSelector((state) => state.editor);
-  const { name, extension, size } = useSelector((state) => state.image);
+  const { name, extension } = useSelector((state) => state.image);
 
   const [debouncedWatermarkText] = useDebounce(watermarkText, DEBOUNCE_DELAY);
   const [debouncedColor] = useDebounce(color, DEBOUNCE_DELAY);
@@ -107,7 +107,7 @@ function Editor() {
       <div>
         <label htmlFor="font">Font style</label>
         <FontPicker
-          apiKey="AIzaSyAiWXiHsvjd7BO-U7cI3c_bn6x__yK1FfY"
+          apiKey={process.env.REACT_APP_FONT_PICKER_API_KEY}
           activeFontFamily={fontFamily}
           pickerId="font"
           onChange={(nextFont) => dispatch(setFontFamily(nextFont.family))}
@@ -118,7 +118,9 @@ function Editor() {
         <button
           type="button"
           onClick={() =>
-            download({ imageFilename: `watermarko-${name}.${extension}` })
+            downloadWatermarkoImage({
+              imageFilename: `watermarko-${name}.${extension}`,
+            })
           }
         >
           Download

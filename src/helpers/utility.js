@@ -35,7 +35,7 @@ export const createWatermark = async (props) => {
 
 export const watermakImageWithText = (originalImage, props) => {
   const { activeFontFamily, watermarkText, color, position, fontSize } = props;
-  
+
   const canvas = document.createElement("canvas");
   const context = canvas.getContext("2d");
 
@@ -54,7 +54,7 @@ export const watermakImageWithText = (originalImage, props) => {
   return canvas.toDataURL();
 };
 
-export const download = async (props) => {
+export const downloadWatermarkoImage = async (props) => {
   const { imageFilename } = props;
 
   const watermakedImageWithText = document.querySelector(
