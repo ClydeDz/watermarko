@@ -3,16 +3,13 @@ import {
   setFileExtension,
   setFileSize,
 } from "../redux/imageSlice";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import HiddenImages from "./hiddenImages";
 
 function Preview() {
   const dispatch = useDispatch();
-  const image = useSelector((state) => state.image);
 
   const onFileUpload = (e) => {
-    console.log(image);
-
     const file = e.target.files[0];
 
     if (!file) return;
