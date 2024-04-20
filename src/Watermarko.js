@@ -4,6 +4,8 @@ import FontPicker from "font-picker-react";
 import { useDebounce } from "use-debounce";
 import { download, createWatermark } from "./helpers/utility"
 import HiddenImages from './helpers/hiddenImages';
+import { setFilename } from './redux/imageSlice';
+import { useSelector, useDispatch } from 'react-redux'
 
 function Watermarko() {  
   const [watermarkText, setWatermarkText] = useState('Watermarko')
@@ -19,6 +21,8 @@ function Watermarko() {
   const [debouncedFontSize] = useDebounce(fontSize, 1500);
 
   const [imageFilename, setImageFilename] = useState('watermarko.png')
+  const reduxImagefilename = useSelector((state) => state.image.filename)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     createWatermark({
@@ -28,10 +32,12 @@ function Watermarko() {
       position: {x: debouncedLeftPosition, y: debouncedTopPosition},
       fontSize: debouncedFontSize
     })
-  }, [debouncedWatermarkText, activeFontFamily, debouncedColor, debouncedTopPosition, debouncedLeftPosition, debouncedFontSize])
+  }, [debouncedWatermarkText, activeFontFamily, debouncedColor, debouncedTopPosition, debouncedLeftPosition, debouncedFontSize, imageFilename])
 
   const onFileUpload = (e) => {
+    console.log(reduxImagefilename)
     setImageFilename(`watermarko-${e.target.value.replace(/.*[\/\\]/, '')}`)
+    dispatch(setFilename(`watermarko-${e.target.value.replace(/.*[\/\\]/, '')}`))
   }
 
   return (
