@@ -11,6 +11,7 @@ import {
   setWatermarkText,
 } from "../redux/editorSlice";
 import { createWatermark, downloadWatermarkoImage } from "../helpers/utility";
+import { setLicenseKey } from "../redux/licenseSlice";
 
 const DEBOUNCE_DELAY = 500;
 
@@ -26,6 +27,7 @@ function Editor() {
     leftPosition,
   } = useSelector((state) => state.editor);
   const { name, extension } = useSelector((state) => state.image);
+  const { licenseKey } = useSelector((state) => state.license);
 
   const [debouncedWatermarkText] = useDebounce(watermarkText, DEBOUNCE_DELAY);
   const [debouncedColor] = useDebounce(color, DEBOUNCE_DELAY);
@@ -115,11 +117,22 @@ function Editor() {
       </div>
 
       <div>
+        <label htmlFor="licenseKey">License key</label>
+        <input
+          type="text"
+          value={licenseKey}
+          onChange={(e) => dispatch(setLicenseKey(e.target.value))}
+          name="licenseKey"
+        />
+      </div>
+
+      <div>
         <button
           type="button"
           onClick={() =>
             downloadWatermarkoImage({
               imageFilename: `watermarko-${name}.${extension}`,
+              licenseKey
             })
           }
         >

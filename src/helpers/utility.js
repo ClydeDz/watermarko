@@ -22,8 +22,6 @@ export const createWatermark = async (props) => {
 
   if (!file) return;
 
-  console.log(file);
-
   originalImage.src = await fileToDataUri(file);
 
   originalImage.addEventListener("load", async () => {
@@ -54,8 +52,31 @@ export const watermakImageWithText = (originalImage, props) => {
   return canvas.toDataURL();
 };
 
+export const checkLicense = async (licenseKey) => {
+  const rawResponse = await fetch(
+    "https://api.gumroad.com/v2/licenses/verify",
+    {
+      method: "POST",
+      body: JSON.stringify({
+        product_id: process.env.REACT_APP_PRODUCT_ID,
+        license_key: licenseKey,
+      }),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    }
+  ).catch((error) => console.error(error));
+
+  const content = await rawResponse.json();
+  return content.success;
+};
+
 export const downloadWatermarkoImage = async (props) => {
-  const { imageFilename } = props;
+  const { imageFilename, licenseKey } = props;
+
+  const isValid = await checkLicense(licenseKey);
+  console.log(isValid);
 
   const watermakedImageWithText = document.querySelector(
     "#watermakedImageWithText"
