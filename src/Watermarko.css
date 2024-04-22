@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   height: 100%;
 }
 
@@ -14,28 +14,36 @@
 
 .row:last-child {
   background-color: azure;
+  align-items: center;
+  align-content: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.App div[id^=font-picker] {
+.App div[id^="font-picker"] {
   box-shadow: none;
 }
 
-.App div[id^=font-picker] .dropdown-button {
+.App div[id^="font-picker"] .dropdown-button {
   background-color: white;
   height: 25px;
   border: 1px solid black;
   box-shadow: none;
 }
 
-.App div[id^=font-picker] .dropdown-button:hover,
-.App div[id^=font-picker] .dropdown-button:focus {
+.App div[id^="font-picker"] .dropdown-button:hover,
+.App div[id^="font-picker"] .dropdown-button:focus {
   background-color: white;
   height: 25px;
   border: 1px solid black;
   box-shadow: none;
 }
 
+#watermakedImageWithText,
+#hiddenImage {
+  height: 80vh;
+}
 
-#watermakedImageWithText {
-  width: 80%;
+#editorCanvas {
+  border: 1px solid black;
 }
