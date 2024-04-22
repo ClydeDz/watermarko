@@ -12,6 +12,9 @@ import {
 } from "../redux/editorSlice";
 import { createWatermark, downloadWatermarkoImage } from "../helpers/utility";
 import { setLicenseKey } from "../redux/licenseSlice";
+import "./editor.css";
+import Input from "../blocks/input";
+import KeyIcon from "../icons/key";
 
 const DEBOUNCE_DELAY = 500;
 
@@ -66,7 +69,7 @@ function Editor() {
         />
       </div>
 
-      <div>
+      {/* <div>
         <label htmlFor="color">Watermark color</label>
         <input
           type="color"
@@ -74,7 +77,7 @@ function Editor() {
           onChange={(e) => dispatch(setColor(e.target.value))}
           name="color"
         />
-      </div>
+      </div> */}
 
       <div>
         <label htmlFor="fontsize">Font size</label>
@@ -106,7 +109,7 @@ function Editor() {
         />
       </div>
 
-      <div>
+      {/* <div>
         <label htmlFor="font">Font style</label>
         <FontPicker
           apiKey={process.env.REACT_APP_FONT_PICKER_API_KEY}
@@ -114,31 +117,7 @@ function Editor() {
           pickerId="font"
           onChange={(nextFont) => dispatch(setFontFamily(nextFont.family))}
         />
-      </div>
-
-      <div>
-        <label htmlFor="licenseKey">License key</label>
-        <input
-          type="text"
-          value={licenseKey}
-          onChange={(e) => dispatch(setLicenseKey(e.target.value))}
-          name="licenseKey"
-        />
-      </div>
-
-      <div>
-        <button
-          type="button"
-          onClick={() =>
-            downloadWatermarkoImage({
-              imageFilename: `watermarko-${name}.${extension}`,
-              licenseKey
-            })
-          }
-        >
-          Download
-        </button>
-      </div>
+      </div> */}
     </div>
   );
 }

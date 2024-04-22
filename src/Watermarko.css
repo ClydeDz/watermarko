@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   height: 100%;
 }
 
@@ -16,25 +16,24 @@
   background-color: azure;
 }
 
-.App div[id^=font-picker] {
+.App div[id^="font-picker"] {
   box-shadow: none;
 }
 
-.App div[id^=font-picker] .dropdown-button {
+.App div[id^="font-picker"] .dropdown-button {
   background-color: white;
   height: 25px;
   border: 1px solid black;
   box-shadow: none;
 }
 
-.App div[id^=font-picker] .dropdown-button:hover,
-.App div[id^=font-picker] .dropdown-button:focus {
+.App div[id^="font-picker"] .dropdown-button:hover,
+.App div[id^="font-picker"] .dropdown-button:focus {
   background-color: white;
   height: 25px;
   border: 1px solid black;
   box-shadow: none;
 }
-
 
 #watermakedImageWithText {
   width: 80%;
