@@ -1,9 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { downloadWatermarkoImage } from "../helpers/utility";
-import { setLicenseKey } from "../redux/licenseSlice";
-import "./editor.css";
-import Input from "../blocks/input";
-import KeyIcon from "../icons/key";
+import "./download.css";
 
 export default function Download() {
   const dispatch = useDispatch();
@@ -12,29 +9,17 @@ export default function Download() {
 
   return (
     <>
-      <div>
-        <Input
-          label="License key"
-          identifier="licensekey"
-          value={licenseKey}
-          onChange={(e) => dispatch(setLicenseKey(e.target.value))}
-          icon={<KeyIcon />}
-        />
-      </div>
-
-      <div>
-        <button
-          type="button"
-          onClick={() =>
-            downloadWatermarkoImage({
-              imageFilename: `watermarko-${name}.${extension}`,
-              licenseKey,
-            })
-          }
-        >
-          Download
-        </button>
-      </div>
+      <button
+        type="button"
+        onClick={() =>
+          downloadWatermarkoImage({
+            imageFilename: `watermarko-${name}.${extension}`,
+            licenseKey,
+          })
+        }
+      >
+        Download
+      </button>
     </>
   );
 }

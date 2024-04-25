@@ -8,14 +8,6 @@
   flex: 1;
 }
 
-.row:first-child {
-  background-color: antiquewhite;
-}
-
-.row:last-child {
-  background-color: azure;
-}
-
 .App div[id^="font-picker"] {
   box-shadow: none;
 }
