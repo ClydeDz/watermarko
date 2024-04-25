@@ -10,9 +10,8 @@ export const fileToDataUri = (field) => {
   });
 };
 
-export const createWatermark = async (props) => {
-  const imagesDiv = document.getElementById("images");
-  const fileInput = document.getElementById("upload");
+export const createWatermark = async (props) => { 
+  const fileInput = document.getElementById("fileUpload");
   const watermakedImageWithText = document.querySelector(
     "#watermakedImageWithText"
   );
@@ -26,9 +25,7 @@ export const createWatermark = async (props) => {
 
   originalImage.addEventListener("load", async () => {
     watermakedImageWithText.src = watermakImageWithText(originalImage, props);
-  });
-
-  imagesDiv.style.visibility = "visible";
+  }); 
 };
 
 export const watermakImageWithText = (originalImage, props) => {

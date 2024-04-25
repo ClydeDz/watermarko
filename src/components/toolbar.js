@@ -19,6 +19,7 @@ import FontSize from "../blocks/fontSize";
 import Separator from "../blocks/separator";
 import UpDownIcon from "../icons/upDownIcon";
 import LeftRightIcon from "../icons/leftRightIcon";
+import FileUpload from "../blocks/fileUpload";
 
 const DEBOUNCE_DELAY = 500;
 
@@ -99,6 +100,7 @@ export default function Toolbar() {
           icon={<LeftRightIcon />}
           onChange={(e) => dispatch(setLeftPosition(e.target.value))}
         />
+        <FileUpload />
       </div>
     </div>
   );
