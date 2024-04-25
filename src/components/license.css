@@ -1,0 +1,57 @@
+.license {
+  position: relative;
+
+  button {
+    border: 1px solid purple;
+    background-color: transparent;
+    color: purple;
+    height: 32px;
+    border-radius: 8px;
+    outline: none;
+    cursor: pointer;
+    padding: 0 12px;
+    font-weight: bold;
+  }
+
+  button:hover {
+    background-color: rgba(251, 231, 251, 0.623);
+  }
+
+  .popup {
+    background-color: white;
+    border-radius: 3px;
+    padding: 9px;
+    position: absolute;
+    top: 34px;
+    width: 250px;
+    z-index: 99999;
+    box-shadow: 0px 0px 0px 1px rgba(64, 87, 109, 0.04),
+      0px 6px 20px -4px rgba(64, 87, 109, 0.3);
+  }
+
+  .popup label,
+  .popup input {
+    display: block;
+  }
+
+  .popup > h2 {
+    font-size: 14px;
+  }
+
+  .popup > button {
+    background-color: purple;
+    color: white;
+    height: 32px;
+    border-radius: 8px;
+    outline: none;
+    border: 0;
+    cursor: pointer;
+    padding: 0 12px;
+    font-weight: bold;
+    width: 100%;
+  }
+
+  .popup > button:hover {
+    background-color: rgba(128, 0, 128, 0.623);
+  }
+}

@@ -8,7 +8,7 @@ export default function Download() {
   const { licenseKey } = useSelector((state) => state.license);
 
   return (
-    <>
+    <div className="download">
       <button
         type="button"
         onClick={() =>
@@ -20,6 +20,6 @@ export default function Download() {
       >
         Download
       </button>
-    </>
+    </div>
   );
 }

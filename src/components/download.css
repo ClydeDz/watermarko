@@ -1,0 +1,16 @@
+.download {
+  button {
+    background-color: purple;
+    color: white;
+    height: 32px;
+    border-radius: 8px;
+    outline: none;
+    border: 0;
+    cursor: pointer;
+    padding: 0 12px;
+    font-weight: bold;
+  }
+  button:hover {
+    background-color: rgba(128, 0, 128, 0.623);
+  }
+}
