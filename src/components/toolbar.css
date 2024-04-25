@@ -1,0 +1,36 @@
+.toolbar {
+  padding: 2px 0 7px 0;
+  background-color: beige;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid black;
+}
+
+.toolbar > div > * {
+  margin: 0 4px;
+}
+
+.toolbar div[id^="font-picker"] {
+  box-shadow: none;
+}
+
+.toolbar div[id^="font-picker"] .dropdown-button,
+.toolbar div[id^="font-picker"] .dropdown-button:hover,
+.toolbar div[id^="font-picker"] .dropdown-button:focus {
+  background-color: white;
+  height: 32px;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.toolbar div[id^="font-picker"].expanded ul {
+  background-color: white;
+  box-shadow: none;
+  border: 1px solid black;
+  border-top: none;
+}
+
+.toolbar div[id^="font-picker"] ul li button:hover,
+.toolbar div[id^="font-picker"] ul li button:focus {
+  background: aliceblue;
+}

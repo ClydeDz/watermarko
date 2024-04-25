@@ -1,0 +1,40 @@
+.fontSize {
+  display: inline;
+  position: relative;
+  top: 0px;
+
+  button,
+  input {
+    display: inline;
+  }
+
+  input {
+    border-radius: 0;
+  }
+
+  button {
+    background-color: white;
+    border: 1px solid black;
+    cursor: pointer;
+    height: 33px;
+    padding: 0 9px;
+  }
+
+  button:hover {
+    background-color: rgb(235, 235, 235);
+    border: 1px solid black;
+    cursor: pointer;
+  }
+
+  button:first-of-type {
+    border-radius: 3px 0 0 3px;
+    border-right: 0;
+  }
+
+  button:last-of-type {
+    border-radius: 0 3px 3px 0;
+    border-left: 0;
+    position: relative;
+    left: 0px;
+  }
+}

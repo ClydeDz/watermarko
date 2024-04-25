@@ -1,0 +1,8 @@
+.separator {
+  background-color: black; /* rgba(57, 76, 96, 0.15); */
+  height: 24px;
+  width: 1px;
+  display: inline-block;
+  position: relative;
+  top: 9px;
+}

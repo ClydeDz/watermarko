@@ -10,16 +10,19 @@ import {
   setTopPosition,
   setWatermarkText,
 } from "../redux/editorSlice";
-import { createWatermark, downloadWatermarkoImage } from "../helpers/utility";
-import { setLicenseKey } from "../redux/licenseSlice";
-import "./editor.css";
-import Input from "../blocks/input";
-import KeyIcon from "../icons/key";
-
+import { createWatermark } from "../helpers/utility";
+import "./toolbar.css";
+import Input, { INPUT_VARIANTS } from "../blocks/input";
+import ColorPicker from "../blocks/colorPicker";
+import TransparencySlider from "../blocks/slider";
+import FontSize from "../blocks/fontSize";
+import Separator from "../blocks/separator";
+import UpDownIcon from "../icons/upDownIcon";
+import LeftRightIcon from "../icons/leftRightIcon";
 
 const DEBOUNCE_DELAY = 500;
 
-function Editor() {
+export default function Toolbar() {
   const dispatch = useDispatch();
 
   const {
@@ -59,70 +62,45 @@ function Editor() {
   ]);
 
   return (
-    <div id="editor">
+    <div className="toolbar">
       <div>
-        <label htmlFor="watermarkText">Watermark text</label>
-        <input
-          type="text"
+        <Input
           value={watermarkText}
-          id="watermarkText"
+          identifier="watermarkText"
+          variant={INPUT_VARIANTS.REGULAR}
           onChange={(e) => dispatch(setWatermarkText(e.target.value))}
         />
-      </div>
-
-      {/* <div>
-        <label htmlFor="color">Watermark color</label>
-        <input
-          type="color"
-          value={color}
-          onChange={(e) => dispatch(setColor(e.target.value))}
-          name="color"
-        />
-      </div> */}
-
-      <div>
-        <label htmlFor="fontsize">Font size</label>
-        <input
-          type="text"
+        <FontSize
           value={fontSize}
-          onChange={(e) => dispatch(setFontSize(e.target.value))}
-          name="fontsize"
+          onFontSizeChange={(value) => dispatch(setFontSize(value))}
         />
-      </div>
-
-      <div>
-        <label htmlFor="top">Top position</label>
-        <input
-          type="text"
-          value={topPosition}
-          onChange={(e) => dispatch(setTopPosition(e.target.value))}
-          name="top"
+        <ColorPicker
+          value={color}
+          onColorChange={(value) => dispatch(setColor(value))}
         />
-      </div>
-
-      <div>
-        <label htmlFor="left">Left position</label>
-        <input
-          type="text"
-          value={leftPosition}
-          onChange={(e) => dispatch(setLeftPosition(e.target.value))}
-          name="left"
-        />
-      </div>
-
-     
-
-      {/* <div>
-        <label htmlFor="font">Font style</label>
         <FontPicker
           apiKey={process.env.REACT_APP_FONT_PICKER_API_KEY}
           activeFontFamily={fontFamily}
           pickerId="font"
           onChange={(nextFont) => dispatch(setFontFamily(nextFont.family))}
         />
-      </div> */}
+        <TransparencySlider />
+        <Separator />
+        <Input
+          value={topPosition}
+          identifier="topPosition"
+          variant={INPUT_VARIANTS.ICON_COMPACT}
+          icon={<UpDownIcon />}
+          onChange={(e) => dispatch(setTopPosition(e.target.value))}
+        />
+        <Input
+          value={leftPosition}
+          identifier="leftPosition"
+          variant={INPUT_VARIANTS.ICON_COMPACT}
+          icon={<LeftRightIcon />}
+          onChange={(e) => dispatch(setLeftPosition(e.target.value))}
+        />
+      </div>
     </div>
   );
 }
-
-export default Editor;

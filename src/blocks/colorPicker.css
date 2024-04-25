@@ -1,0 +1,29 @@
+.colorPicker {
+  display: inline;
+  position: relative;
+  top: 6px;
+
+  button {
+    cursor: pointer;
+    background-color: transparent;
+    outline: none;
+    border: 0;
+    height: 32px;
+
+    svg {
+      position: relative;
+      top: 2px;
+    }
+  }
+
+  button:hover {
+    cursor: pointer;
+    background-color: aliceblue;
+  }
+
+  .twitterPicker {
+    position: absolute !important;
+    top: 22px !important;
+    right: 0 !important;
+  }
+}
