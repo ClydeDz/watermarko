@@ -2,9 +2,9 @@
   position: relative;
 
   button {
-    border: 1px solid purple;
+    border: 1px solid white;
     background-color: transparent;
-    color: purple;
+    color: white;
     height: 32px;
     border-radius: 8px;
     outline: none;
@@ -14,7 +14,7 @@
   }
 
   button:hover {
-    background-color: rgba(251, 231, 251, 0.623);
+    background-color: rgba(173, 0, 173, 0.623);
   }
 
   .popup {

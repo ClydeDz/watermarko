@@ -1,15 +1,15 @@
 #header {
-  background-color: white;
-  color: black;
+  background-color: purple;
   padding: 9px 9px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgb(185, 185, 185);
   display: flex;
   place-items: center;
   justify-content: space-between;
 
   h1 {
-    font-size: 16px;
+    font-size: 20px;
     margin-block-end: 0;
     margin-block-start: 0;
+    color: white;
   }
 }

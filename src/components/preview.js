@@ -5,6 +5,7 @@ import {
 } from "../redux/imageSlice";
 import { useDispatch } from "react-redux";
 import HiddenImages from "./hiddenImages";
+import "./preview.css";
 
 function Preview() {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ function Preview() {
   };
 
   return (
-    <div id="previewZone" className="row">
+    <div id="previewZone" className="preview">
       <input
         id="upload"
         type="file"

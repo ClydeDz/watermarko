@@ -85,7 +85,6 @@ export default function Toolbar() {
           onChange={(nextFont) => dispatch(setFontFamily(nextFont.family))}
         />
         <TransparencySlider />
-        <Separator />
         <Input
           value={topPosition}
           identifier="topPosition"

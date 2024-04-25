@@ -1,7 +1,6 @@
 import "./Watermarko.css";
 
 import Preview from "./components/preview";
-import Editor from "./components/editor";
 import Header from "./components/header";
 
 import Toolbar from "./components/toolbar";

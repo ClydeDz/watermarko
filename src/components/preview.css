@@ -1,0 +1,8 @@
+.preview {
+  display: flex;
+  justify-content: center;
+}
+
+#watermakedImageWithText {
+  height: 80vh;
+}
