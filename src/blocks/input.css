@@ -6,7 +6,7 @@
 
 .textinput {
   border-radius: 0;
-  border: 1px solid rgb(185, 185, 185);
+  border: 1px solid var(--gray);
   height: 32px;
   padding: 0px 9px;
   border-radius: 3px;
@@ -15,9 +15,13 @@
 input:active,
 input:focus-visible,
 input:focus {
-  border: 1px solid rgb(185, 185, 185);
+  border: 1px solid var(--primary);
   outline: none;
 }
+
+/* input:hover {
+  background-color: var(--primary-hover-light);
+} */
 
 .icon {
   position: absolute;

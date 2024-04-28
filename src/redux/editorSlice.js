@@ -1,8 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+var root = document.documentElement;
+var styles = getComputedStyle(root);
+var primaryColor = styles.getPropertyValue("--primary");
+
 const initialState = {
   watermarkText: "watermarko",
-  color: "#FFFFFF",
+  color: primaryColor,
   fontSize: 20,
   fontFamily: "Roboto",
   topPosition: 20,

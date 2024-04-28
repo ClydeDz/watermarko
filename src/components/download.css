@@ -5,12 +5,11 @@
     background-color: white;
     color: purple;
     height: 42px;
-    font-size: 16px;
     border-radius: 8px;
     outline: none;
     border: 0;
     cursor: pointer;
-    padding: 0 12px;
+    padding: 0 18px;
     font-weight: bold;
   }
   button:hover {

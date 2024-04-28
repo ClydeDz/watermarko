@@ -1,3 +1,10 @@
+:root {
+  --primary: #fe9000;
+  --primary-hover: color-mix(in srgb, var(--primary), #ffffff 10%);
+  --primary-hover-light: color-mix(in srgb, var(--primary), #ffffff 90%);
+  --gray: #b9b9b9;
+}
+
 body {
   margin: 0;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
@@ -8,9 +15,4 @@ body {
   font-size: 13px;
   background-image: url("../public/background.png");
   background-repeat: repeat;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
 }

@@ -14,15 +14,15 @@
 
   button {
     background-color: white;
-    border: 1px solid rgb(185, 185, 185);
+    border: 1px solid var(--gray);
     cursor: pointer;
     height: 33px;
     padding: 0 9px;
   }
 
   button:hover {
-    background-color: rgb(235, 235, 235);
-    border: 1px solid rgb(185, 185, 185);
+    background-color: var(--primary-hover-light);
+    border: 1px solid var(--gray);
     cursor: pointer;
   }
 

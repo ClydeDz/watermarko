@@ -18,7 +18,7 @@
 
   button:hover {
     cursor: pointer;
-    background-color: aliceblue;
+    background-color: var(--primary-hover-light);
   }
 
   .twitterPicker {

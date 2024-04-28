@@ -2,13 +2,16 @@
   display: inline;
 
   label {
-    background-color: indigo;
+    background-color: var(--primary);
     color: white;
-    padding: 0.5rem;
-    font-family: sans-serif;
     border-radius: 0.3rem;
     cursor: pointer;
-    margin-top: 1rem;
     display: inline;
+    padding: 9px 18px;
+  }
+
+  label:hover,
+  label:focus {
+    background-color: var(--primary-hover-light);
   }
 }
