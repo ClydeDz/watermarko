@@ -12,28 +12,28 @@ export default function UpDownIcon() {
         <g clip-path="url(#clip0_27_20)">
           <path
             d="M13.75 3.25V16.75"
-            stroke="#A2A2A2"
+            stroke="black"
             stroke-width="1.5"
             stroke-linecap="round"
             stroke-linejoin="round"
           />
           <path
             d="M8.5 14.5L6.25 16.75L4 14.5"
-            stroke="#A2A2A2"
+            stroke="black"
             stroke-width="1.5"
             stroke-linecap="round"
             stroke-linejoin="round"
           />
           <path
             d="M6.25 16.75V3.25"
-            stroke="#A2A2A2"
+            stroke="black"
             stroke-width="1.5"
             stroke-linecap="round"
             stroke-linejoin="round"
           />
           <path
             d="M16 5.5L13.75 3.25L11.5 5.5"
-            stroke="#A2A2A2"
+            stroke="black"
             stroke-width="1.5"
             stroke-linecap="round"
             stroke-linejoin="round"

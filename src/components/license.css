@@ -3,9 +3,9 @@
   display: inline;
 
   button {
-    border: 1px solid white;
+    border: 1px solid var(--white);
     background-color: transparent;
-    color: white;
+    color: var(--white);
     height: 42px;
     border-radius: 8px;
     outline: none;
@@ -15,13 +15,13 @@
   }
 
   button:hover {
-    background-color: rgba(173, 0, 173, 0.623);
+    background-color: var(--primary-hover);
   }
 
   .popup {
-    background-color: white;
+    background-color: var(--white);
     border-radius: 3px;
-    padding: 9px;
+    padding: 0 9px 12px 9px;
     position: absolute;
     top: 30px;
     right: 0;
@@ -31,9 +31,20 @@
       0px 6px 20px -4px rgba(64, 87, 109, 0.3);
   }
 
+  .popup hr {
+    margin-top: 21px;
+    margin-bottom: 18px;
+    border-top: 0.5px solid var(--gray);
+  }
+
+  .popup label {
+    margin-bottom: 9px;
+  }
+
   .popup label,
   .popup input {
     display: block;
+    width: 90%;
   }
 
   .popup > h2 {
@@ -41,8 +52,8 @@
   }
 
   .popup > button {
-    background-color: purple;
-    color: white;
+    background-color: var(--primary);
+    color: var(--white);
     height: 32px;
     border-radius: 8px;
     outline: none;
@@ -54,6 +65,6 @@
   }
 
   .popup > button:hover {
-    background-color: rgba(128, 0, 128, 0.623);
+    background-color: var(--primary-hover);
   }
 }

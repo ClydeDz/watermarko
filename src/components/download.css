@@ -2,8 +2,8 @@
   display: inline;
 
   button {
-    background-color: white;
-    color: purple;
+    background-color: var(--white);
+    color: var(--primary);
     height: 42px;
     border-radius: 8px;
     outline: none;
@@ -12,7 +12,8 @@
     padding: 0 18px;
     font-weight: bold;
   }
+
   button:hover {
-    background-color: rgba(255, 219, 255, 0.623);
+    background-color: var(--white-hover);
   }
 }

@@ -4,8 +4,7 @@ import Input, { INPUT_VARIANTS } from "./input";
 import OpacityIcon from "../icons/opacity";
 
 export default function TransparencySlider(props) {
-  const { min, max } = props;
-  const [value, setValue] = useState(0);
+  const { min, max, value, onChange } = props;
   const [isSelected, setIsSelected] = useState(false);
 
   return (
@@ -21,15 +20,15 @@ export default function TransparencySlider(props) {
               identifier="transparency"
               label="Transparency"
               variant={INPUT_VARIANTS.COMPACT}
-              onChange={(e) => setValue(e.target.value)}
+              onChange={(e) => onChange(e.target.value)}
             />
           </div>
           <input
             type="range"
-            min="1"
+            min="0"
             max="100"
             value={value}
-            onChange={(e) => setValue(e.target.value)}
+            onChange={(e) => onChange(e.target.value)}
           />
         </div>
       )}

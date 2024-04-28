@@ -13,7 +13,7 @@
   }
 
   button {
-    background-color: white;
+    background-color: var(--white);
     border: 1px solid var(--gray);
     cursor: pointer;
     height: 33px;
@@ -24,6 +24,10 @@
     background-color: var(--primary-hover-light);
     border: 1px solid var(--gray);
     cursor: pointer;
+  }
+
+  button:active {
+    border: 1px solid var(--primary);
   }
 
   button:first-of-type {

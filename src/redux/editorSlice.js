@@ -11,6 +11,7 @@ const initialState = {
   fontFamily: "Roboto",
   topPosition: 20,
   leftPosition: 20,
+  transparency: 100,
 };
 
 export const editorSlice = createSlice({
@@ -35,6 +36,9 @@ export const editorSlice = createSlice({
     setLeftPosition: (state, action) => {
       state.leftPosition = action.payload;
     },
+    setTransparency: (state, action) => {
+      state.transparency = action.payload;
+    },
   },
 });
 
@@ -45,6 +49,7 @@ export const {
   setFontSize,
   setLeftPosition,
   setTopPosition,
+  setTransparency,
 } = editorSlice.actions;
 
 export default editorSlice.reducer;

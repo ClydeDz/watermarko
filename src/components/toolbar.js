@@ -8,6 +8,7 @@ import {
   setFontSize,
   setLeftPosition,
   setTopPosition,
+  setTransparency,
   setWatermarkText,
 } from "../redux/editorSlice";
 import { createWatermark } from "../helpers/utility";
@@ -33,6 +34,7 @@ export default function Toolbar() {
     fontFamily,
     topPosition,
     leftPosition,
+    transparency,
   } = useSelector((state) => state.editor);
   const { name, extension } = useSelector((state) => state.image);
   const { licenseKey } = useSelector((state) => state.license);
@@ -43,6 +45,7 @@ export default function Toolbar() {
   const [debouncedLeftPosition] = useDebounce(leftPosition, DEBOUNCE_DELAY);
   const [debouncedFontSize] = useDebounce(fontSize, DEBOUNCE_DELAY);
   const [debouncedFontFamily] = useDebounce(fontFamily, DEBOUNCE_DELAY * 3);
+  const [debouncedTransparency] = useDebounce(transparency, DEBOUNCE_DELAY);
 
   useEffect(() => {
     createWatermark({
@@ -51,6 +54,7 @@ export default function Toolbar() {
       color: debouncedColor,
       position: { x: debouncedLeftPosition, y: debouncedTopPosition },
       fontSize: debouncedFontSize,
+      transparency: transparency,
     });
   }, [
     debouncedWatermarkText,
@@ -59,6 +63,7 @@ export default function Toolbar() {
     debouncedTopPosition,
     debouncedLeftPosition,
     debouncedFontSize,
+    debouncedTransparency,
     name,
   ]);
 
@@ -85,7 +90,10 @@ export default function Toolbar() {
           pickerId="font"
           onChange={(nextFont) => dispatch(setFontFamily(nextFont.family))}
         />
-        <TransparencySlider />
+        <TransparencySlider
+          value={transparency}
+          onChange={(value) => dispatch(setTransparency(value))}
+        />
         <Input
           value={topPosition}
           identifier="topPosition"

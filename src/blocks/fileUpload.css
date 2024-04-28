@@ -3,7 +3,7 @@
 
   label {
     background-color: var(--primary);
-    color: white;
+    color: var(--white);
     border-radius: 0.3rem;
     cursor: pointer;
     display: inline;
@@ -12,6 +12,6 @@
 
   label:hover,
   label:focus {
-    background-color: var(--primary-hover-light);
+    background-color: var(--primary-hover);
   }
 }

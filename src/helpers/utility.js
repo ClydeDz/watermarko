@@ -10,7 +10,7 @@ export const fileToDataUri = (field) => {
   });
 };
 
-export const createWatermark = async (props) => { 
+export const createWatermark = async (props) => {
   const fileInput = document.getElementById("fileUpload");
   const watermakedImageWithText = document.querySelector(
     "#watermakedImageWithText"
@@ -25,11 +25,18 @@ export const createWatermark = async (props) => {
 
   originalImage.addEventListener("load", async () => {
     watermakedImageWithText.src = watermakImageWithText(originalImage, props);
-  }); 
+  });
 };
 
 export const watermakImageWithText = (originalImage, props) => {
-  const { activeFontFamily, watermarkText, color, position, fontSize } = props;
+  const {
+    activeFontFamily,
+    watermarkText,
+    color,
+    position,
+    fontSize,
+    transparency,
+  } = props;
 
   const canvas = document.createElement("canvas");
   const context = canvas.getContext("2d");
@@ -41,6 +48,7 @@ export const watermakImageWithText = (originalImage, props) => {
 
   context.drawImage(originalImage, 0, 0, canvasWidth, canvasHeight);
 
+  context.globalAlpha = transparency / 100;
   context.fillStyle = color;
   context.textBaseline = "middle";
   context.font = `${fontSize}px ${activeFontFamily}`;

@@ -1,6 +1,6 @@
 .toolbar {
   padding: 2px 0 7px 0;
-  background-color: white;
+  background-color: var(--white);
   display: flex;
   justify-content: center;
   border-bottom: 1px solid var(--gray);
@@ -16,16 +16,19 @@
 }
 
 .toolbar div[id^="font-picker"] .dropdown-button,
-.toolbar div[id^="font-picker"] .dropdown-button:hover,
-.toolbar div[id^="font-picker"] .dropdown-button:focus {
-  background-color: white;
+.toolbar div[id^="font-picker"] .dropdown-button:hover {
+  background-color: var(--white);
   height: 32px;
   border: 1px solid var(--gray);
   border-radius: 3px;
 }
 
+.toolbar div[id^="font-picker"] .dropdown-button:focus {
+  border: 1px solid var(--primary-hover);
+}
+
 .toolbar div[id^="font-picker"].expanded ul {
-  background-color: white;
+  background-color: var(--white);
   box-shadow: none;
   border: 1px solid var(--gray);
   border-top: none;

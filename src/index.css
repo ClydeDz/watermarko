@@ -1,8 +1,11 @@
 :root {
   --primary: #fe9000;
-  --primary-hover: color-mix(in srgb, var(--primary), #ffffff 10%);
-  --primary-hover-light: color-mix(in srgb, var(--primary), #ffffff 90%);
+  --white: #ffffff;
   --gray: #b9b9b9;
+
+  --primary-hover: color-mix(in srgb, var(--primary), var(--white) 10%);
+  --primary-hover-light: color-mix(in srgb, var(--primary), var(--white) 90%);
+  --white-hover: color-mix(in srgb, var(--white), var(--primary) 10%);
 }
 
 body {
