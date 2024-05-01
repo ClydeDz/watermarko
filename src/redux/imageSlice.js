@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   name: "watermarko",
   extension: "png",
-  size: 1234,
+  size: 0,
+  type: "",
 };
 
 export const imageSlice = createSlice({
@@ -19,10 +20,13 @@ export const imageSlice = createSlice({
     setFileSize: (state, action) => {
       state.size = action.payload;
     },
+    setFileType: (state, action) => {
+      state.type = action.payload;
+    },
   },
 });
 
-export const { setFilename, setFileExtension, setFileSize } =
+export const { setFilename, setFileExtension, setFileSize, setFileType } =
   imageSlice.actions;
 
 export default imageSlice.reducer;
