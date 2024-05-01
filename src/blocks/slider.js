@@ -4,7 +4,7 @@ import Input, { INPUT_VARIANTS } from "./input";
 import OpacityIcon from "../icons/opacity";
 
 export default function TransparencySlider(props) {
-  const { min, max, value, onChange } = props;
+  const { value, onChange } = props;
   const [isSelected, setIsSelected] = useState(false);
 
   return (
