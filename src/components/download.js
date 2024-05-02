@@ -4,7 +4,7 @@ import "./download.css";
 
 export default function Download() {
   const dispatch = useDispatch();
-  const { name, extension } = useSelector((state) => state.image);
+  const { name, extension, watermarkedImageReference } = useSelector((state) => state.image);
   const { licenseKey } = useSelector((state) => state.license);
 
   return (
@@ -12,7 +12,7 @@ export default function Download() {
       <button
         type="button"
         onClick={() =>
-          downloadWatermarkoImage({
+          downloadWatermarkoImage(watermarkedImageReference, {
             imageFilename: `watermarko-${name}.${extension}`,
             licenseKey,
           })

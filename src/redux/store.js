@@ -12,8 +12,14 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: ["imageSlice/setHiddenOriginalImageReference"],
-        ignoredPaths: ["image.hiddenOriginalImageReference"],
+        ignoredActions: [
+          "imageSlice/setHiddenOriginalImageReference",
+          "imageSlice/setWatermarkedImageReference",
+        ],
+        ignoredPaths: [
+          "image.hiddenOriginalImageReference",
+          "image.watermarkedImageReference",
+        ],
       },
     }),
 });

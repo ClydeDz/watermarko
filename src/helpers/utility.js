@@ -10,29 +10,29 @@ export const fileToDataUri = (field) => {
   });
 };
 
-export const createWatermark = async (props) => {
-  const fileInput = document.getElementById("fileUpload");
-  const watermakedImageWithText = document.querySelector(
-    "#watermakedImageWithText"
-  );
-  const originalImage = document.querySelector("#originalImage");
+// export const createWatermark = async (props) => {
+//   const fileInput = document.getElementById("fileUpload");
+//   const watermakedImageWithText = document.querySelector(
+//     "#watermakedImageWithText"
+//   );
+//   const originalImage = document.querySelector("#originalImage");
 
-  const [file] = fileInput.files;
+//   const [file] = fileInput.files;
 
-  if (!file) return;
+//   if (!file) return;
 
-  originalImage.src = await fileToDataUri(file);
+//   originalImage.src = await fileToDataUri(file);
 
-  originalImage.addEventListener("load", async () => {
-    watermakedImageWithText.src = watermakImageWithText(originalImage, props);
-  });
-};
+//   originalImage.addEventListener("load", async () => {
+//     watermakedImageWithText.src = watermakImageWithText(originalImage, props);
+//   });
+// };
 
 export const createWatermarkV3 = (originalImage, watermarkedImage, props) => {
   watermarkedImage.current.src = watermakImageWithText(originalImage, props);
 };
 
-export const watermakImageWithText = (originalImage, props) => {
+const watermakImageWithText = (originalImage, props) => {
   const {
     watermarkText,
     fontSize,
@@ -81,16 +81,21 @@ export const checkLicense = async (licenseKey) => {
   return content.success;
 };
 
-export const downloadWatermarkoImage = async (props) => {
+export const downloadWatermarkoImage = async (
+  watermarkedImageReference,
+  props
+) => {
   const { imageFilename, licenseKey } = props;
 
   const isValid = await checkLicense(licenseKey);
   console.log(isValid);
 
-  const watermakedImageWithText = document.querySelector(
-    "#watermakedImageWithText"
-  );
-  const image = await fetch(watermakedImageWithText.src);
+  // const watermakedImageWithText = document.querySelector(
+  //   "#watermakedImageWithText"
+  // );
+  console.log(watermarkedImageReference);
+
+  const image = await fetch(watermarkedImageReference.current.src);
   const imageBlog = await image.blob();
   const imageURL = URL.createObjectURL(imageBlog);
 

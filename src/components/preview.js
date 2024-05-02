@@ -4,11 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import { useDebounce } from "use-debounce";
 
 import { createWatermarkV3 } from "../helpers/utility";
+import { setWatermarkedImageReference } from "../redux/imageSlice";
 
 const DEBOUNCE_DELAY = 250;
 
 export default function Preview() {
   const watermarkedImageRef = useRef();
+  const dispatch = useDispatch();
 
   const {
     watermarkText,
@@ -53,6 +55,10 @@ export default function Preview() {
     name,
     hiddenOriginalImageReference,
   ]);
+
+  useEffect(() => {
+    dispatch(setWatermarkedImageReference(watermarkedImageRef));
+  }, []);
 
   return (
     <div className="preview">
