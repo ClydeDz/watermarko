@@ -38,10 +38,6 @@ export default function FileUpload(props) {
   };
 
   const onImageLoad = () => {
-    console.log(
-      hiddenOriginalImageRef.current.width,
-      hiddenOriginalImageRef.current.height
-    );
     dispatch(
       setFileDimensions({
         height: hiddenOriginalImageRef.current.height,

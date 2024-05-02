@@ -1,7 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useRef, useState } from "react";
 import FontPicker from "font-picker-react";
-import { useDebounce } from "use-debounce";
 import {
   setColor,
   setFontFamily,
@@ -11,18 +9,15 @@ import {
   setTransparency,
   setWatermarkText,
 } from "../redux/editorSlice";
-import { createWatermark, createWatermarkV2 } from "../helpers/utility";
 import "./toolbar.css";
 import Input, { INPUT_VARIANTS } from "../blocks/input";
 import ColorPicker from "../blocks/colorPicker";
 import TransparencySlider from "../blocks/slider";
 import FontSize from "../blocks/fontSize";
-import Separator from "../blocks/separator";
 import UpDownIcon from "../icons/upDownIcon";
 import LeftRightIcon from "../icons/leftRightIcon";
 import FileUpload from "../blocks/fileUpload";
-
-const DEBOUNCE_DELAY = 500;
+import { setHiddenOriginalImageReference } from "../redux/imageSlice";
 
 export default function Toolbar() {
   const dispatch = useDispatch();
@@ -36,41 +31,6 @@ export default function Toolbar() {
     leftPosition,
     transparency,
   } = useSelector((state) => state.editor);
-  const { name, extension } = useSelector((state) => state.image);
-  const { licenseKey } = useSelector((state) => state.license);
-
-  const [debouncedWatermarkText] = useDebounce(watermarkText, DEBOUNCE_DELAY);
-  const [debouncedColor] = useDebounce(color, DEBOUNCE_DELAY);
-  const [debouncedTopPosition] = useDebounce(topPosition, DEBOUNCE_DELAY);
-  const [debouncedLeftPosition] = useDebounce(leftPosition, DEBOUNCE_DELAY);
-  const [debouncedFontSize] = useDebounce(fontSize, DEBOUNCE_DELAY);
-  const [debouncedFontFamily] = useDebounce(fontFamily, DEBOUNCE_DELAY * 3);
-  const [debouncedTransparency] = useDebounce(transparency, DEBOUNCE_DELAY);
-
-  const [imageRef, setImageRef] = useState(null);
-
-  useEffect(() => {
-    if (imageRef) {
-      console.log(imageRef);
-      createWatermarkV2(imageRef, {
-        activeFontFamily: debouncedFontFamily,
-        watermarkText: debouncedWatermarkText,
-        color: debouncedColor,
-        position: { x: debouncedLeftPosition, y: debouncedTopPosition },
-        fontSize: debouncedFontSize,
-        transparency: transparency,
-      });
-    }
-  }, [
-    debouncedWatermarkText,
-    debouncedFontFamily,
-    debouncedColor,
-    debouncedTopPosition,
-    debouncedLeftPosition,
-    debouncedFontSize,
-    debouncedTransparency,
-    name,
-  ]);
 
   return (
     <div className="toolbar">
@@ -113,7 +73,11 @@ export default function Toolbar() {
           icon={<LeftRightIcon />}
           onChange={(e) => dispatch(setLeftPosition(e.target.value))}
         />
-        <FileUpload onChange={(reference) => setImageRef(reference)} />
+        <FileUpload
+          onChange={(reference) =>
+            dispatch(setHiddenOriginalImageReference(reference))
+          }
+        />
       </div>
     </div>
   );

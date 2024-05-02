@@ -6,6 +6,7 @@ const initialState = {
   size: 0,
   type: "",
   dimensions: { height: 0, width: 0 },
+  hiddenOriginalImageReference: null,
 };
 
 export const imageSlice = createSlice({
@@ -27,6 +28,9 @@ export const imageSlice = createSlice({
     setFileDimensions: (state, action) => {
       state.dimensions = action.payload;
     },
+    setHiddenOriginalImageReference: (state, action) => {
+      state.hiddenOriginalImageReference = action.payload;
+    },
   },
 });
 
@@ -36,6 +40,7 @@ export const {
   setFileSize,
   setFileType,
   setFileDimensions,
+  setHiddenOriginalImageReference,
 } = imageSlice.actions;
 
 export default imageSlice.reducer;

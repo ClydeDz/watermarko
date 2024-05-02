@@ -9,4 +9,11 @@ export const store = configureStore({
     editor: editorReducer,
     license: licenseReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ["imageSlice/setHiddenOriginalImageReference"],
+        ignoredPaths: ["image.hiddenOriginalImageReference"],
+      },
+    }),
 });

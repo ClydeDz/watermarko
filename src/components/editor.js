@@ -10,11 +10,8 @@ import {
   setTopPosition,
   setWatermarkText,
 } from "../redux/editorSlice";
-import { createWatermark, downloadWatermarkoImage } from "../helpers/utility";
-import { setLicenseKey } from "../redux/licenseSlice";
-import "./editor.css";
-import Input from "../blocks/input";
-import KeyIcon from "../icons/key";
+import { createWatermark, downloadWatermarkoImage } from "../helpers/utility"; 
+import "./editor.css"; 
 
 
 const DEBOUNCE_DELAY = 500;

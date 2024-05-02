@@ -28,29 +28,25 @@ export const createWatermark = async (props) => {
   });
 };
 
-export const createWatermarkV2 = (imageRef, props) => {
-  const watermakedImageWithText = document.querySelector(
-    "#watermakedImageWithText"
-  );
-  watermakedImageWithText.src = watermakImageWithText(imageRef, props);
+export const createWatermarkV3 = (originalImage, watermarkedImage, props) => {
+  watermarkedImage.current.src = watermakImageWithText(originalImage, props);
 };
 
 export const watermakImageWithText = (originalImage, props) => {
-  console.log(originalImage, props);
   const {
-    activeFontFamily,
     watermarkText,
-    color,
-    position,
     fontSize,
+    activeFontFamily,
+    color,
     transparency,
+    position,
   } = props;
-
-  const canvas = document.createElement("canvas");
-  const context = canvas.getContext("2d");
 
   const canvasWidth = originalImage.width;
   const canvasHeight = originalImage.height;
+
+  const canvas = document.createElement("canvas");
+  const context = canvas.getContext("2d");
   canvas.width = canvasWidth;
   canvas.height = canvasHeight;
 
