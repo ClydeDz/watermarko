@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import FontPicker from "font-picker-react";
 import { useDebounce } from "use-debounce";
 import {
@@ -11,7 +11,7 @@ import {
   setTransparency,
   setWatermarkText,
 } from "../redux/editorSlice";
-import { createWatermark } from "../helpers/utility";
+import { createWatermark, createWatermarkV2 } from "../helpers/utility";
 import "./toolbar.css";
 import Input, { INPUT_VARIANTS } from "../blocks/input";
 import ColorPicker from "../blocks/colorPicker";
@@ -47,15 +47,20 @@ export default function Toolbar() {
   const [debouncedFontFamily] = useDebounce(fontFamily, DEBOUNCE_DELAY * 3);
   const [debouncedTransparency] = useDebounce(transparency, DEBOUNCE_DELAY);
 
+  const [imageRef, setImageRef] = useState(null);
+
   useEffect(() => {
-    createWatermark({
-      activeFontFamily: debouncedFontFamily,
-      watermarkText: debouncedWatermarkText,
-      color: debouncedColor,
-      position: { x: debouncedLeftPosition, y: debouncedTopPosition },
-      fontSize: debouncedFontSize,
-      transparency: transparency,
-    });
+    if (imageRef) {
+      console.log(imageRef);
+      createWatermarkV2(imageRef, {
+        activeFontFamily: debouncedFontFamily,
+        watermarkText: debouncedWatermarkText,
+        color: debouncedColor,
+        position: { x: debouncedLeftPosition, y: debouncedTopPosition },
+        fontSize: debouncedFontSize,
+        transparency: transparency,
+      });
+    }
   }, [
     debouncedWatermarkText,
     debouncedFontFamily,
@@ -108,7 +113,7 @@ export default function Toolbar() {
           icon={<LeftRightIcon />}
           onChange={(e) => dispatch(setLeftPosition(e.target.value))}
         />
-        <FileUpload />
+        <FileUpload onChange={(reference) => setImageRef(reference)} />
       </div>
     </div>
   );

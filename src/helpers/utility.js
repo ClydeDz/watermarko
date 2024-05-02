@@ -28,7 +28,15 @@ export const createWatermark = async (props) => {
   });
 };
 
+export const createWatermarkV2 = (imageRef, props) => {
+  const watermakedImageWithText = document.querySelector(
+    "#watermakedImageWithText"
+  );
+  watermakedImageWithText.src = watermakImageWithText(imageRef, props);
+};
+
 export const watermakImageWithText = (originalImage, props) => {
+  console.log(originalImage, props);
   const {
     activeFontFamily,
     watermarkText,

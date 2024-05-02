@@ -5,6 +5,7 @@ const initialState = {
   extension: "png",
   size: 0,
   type: "",
+  dimensions: { height: 0, width: 0 },
 };
 
 export const imageSlice = createSlice({
@@ -23,10 +24,18 @@ export const imageSlice = createSlice({
     setFileType: (state, action) => {
       state.type = action.payload;
     },
+    setFileDimensions: (state, action) => {
+      state.dimensions = action.payload;
+    },
   },
 });
 
-export const { setFilename, setFileExtension, setFileSize, setFileType } =
-  imageSlice.actions;
+export const {
+  setFilename,
+  setFileExtension,
+  setFileSize,
+  setFileType,
+  setFileDimensions,
+} = imageSlice.actions;
 
 export default imageSlice.reducer;

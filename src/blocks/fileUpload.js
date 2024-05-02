@@ -4,14 +4,19 @@ import {
   setFileExtension,
   setFileSize,
   setFileType,
+  setFileDimensions,
 } from "../redux/imageSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { fileToDataUri } from "../helpers/utility";
+import { useRef } from "react";
 
-export default function FileUpload() {
+export default function FileUpload(props) {
+  const { onChange } = props;
   const dispatch = useDispatch();
+  const hiddenOriginalImageRef = useRef();
   const { size } = useSelector((state) => state.image);
 
-  const onFileUpload = (e) => {
+  const onFileUpload = async (e) => {
     const file = e.target.files[0];
 
     if (!file) return;
@@ -26,6 +31,23 @@ export default function FileUpload() {
     dispatch(setFileExtension(fileExtension));
     dispatch(setFileSize(fileSize));
     dispatch(setFileType(fileType));
+
+    hiddenOriginalImageRef.current.src = await fileToDataUri(file);
+
+    onChange(hiddenOriginalImageRef.current);
+  };
+
+  const onImageLoad = () => {
+    console.log(
+      hiddenOriginalImageRef.current.width,
+      hiddenOriginalImageRef.current.height
+    );
+    dispatch(
+      setFileDimensions({
+        height: hiddenOriginalImageRef.current.height,
+        width: hiddenOriginalImageRef.current.width,
+      })
+    );
   };
 
   return (
@@ -40,6 +62,8 @@ export default function FileUpload() {
       <label for="fileUpload">
         {size > 0 ? "Upload another image" : "Upload an image"}
       </label>
+      <img hidden ref={hiddenOriginalImageRef} onLoad={onImageLoad} />
+      <img id="originalImage" hidden />
     </div>
   );
 }
