@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import { useDebounce } from "use-debounce";
 
-import { createWatermarkV3 } from "../helpers/utility";
+import { generateWatermarkPreview } from "../helpers/utility";
 import { setWatermarkedImageReference } from "../redux/imageSlice";
 
 const DEBOUNCE_DELAY = 250;
@@ -36,14 +36,18 @@ export default function Preview() {
   useEffect(() => {
     if (!hiddenOriginalImageReference) return;
 
-    createWatermarkV3(hiddenOriginalImageReference, watermarkedImageRef, {
-      watermarkText: debouncedWatermarkText,
-      fontSize: debouncedFontSize,
-      color: debouncedColor,
-      activeFontFamily: debouncedFontFamily,
-      transparency: transparency,
-      position: { x: debouncedLeftPosition, y: debouncedTopPosition },
-    });
+    generateWatermarkPreview(
+      hiddenOriginalImageReference,
+      watermarkedImageRef,
+      {
+        watermarkText: debouncedWatermarkText,
+        fontSize: debouncedFontSize,
+        color: debouncedColor,
+        activeFontFamily: debouncedFontFamily,
+        transparency: transparency,
+        position: { x: debouncedLeftPosition, y: debouncedTopPosition },
+      }
+    );
   }, [
     debouncedWatermarkText,
     debouncedFontSize,

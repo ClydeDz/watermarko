@@ -13,7 +13,7 @@ export default function License() {
   return (
     <div className="license">
       <button onClick={(e) => setIsSelected(!isSelected)}>
-        Purchase an upgrade
+        Download full size
       </button>
       {isSelected && (
         <div className="popup">

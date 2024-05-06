@@ -10,29 +10,24 @@ export const fileToDataUri = (field) => {
   });
 };
 
-// export const createWatermark = async (props) => {
-//   const fileInput = document.getElementById("fileUpload");
-//   const watermakedImageWithText = document.querySelector(
-//     "#watermakedImageWithText"
-//   );
-//   const originalImage = document.querySelector("#originalImage");
-
-//   const [file] = fileInput.files;
-
-//   if (!file) return;
-
-//   originalImage.src = await fileToDataUri(file);
-
-//   originalImage.addEventListener("load", async () => {
-//     watermakedImageWithText.src = watermakImageWithText(originalImage, props);
-//   });
-// };
-
-export const createWatermarkV3 = (originalImage, watermarkedImage, props) => {
-  watermarkedImage.current.src = watermakImageWithText(originalImage, props);
+export const generateWatermarkPreview = (
+  originalImage,
+  watermarkedImage,
+  props
+) => {
+  watermarkedImage.current.src = applyTextWatermarkToImage(
+    originalImage,
+    IMAGE_MODE.HALF,
+    props
+  );
 };
 
-const watermakImageWithText = (originalImage, props) => {
+export const IMAGE_MODE = {
+  FULL: "1",
+  HALF: "2",
+};
+
+const applyTextWatermarkToImage = (originalImage, imageMode, props) => {
   const {
     watermarkText,
     fontSize,
@@ -47,18 +42,57 @@ const watermakImageWithText = (originalImage, props) => {
 
   const canvas = document.createElement("canvas");
   const context = canvas.getContext("2d");
-  canvas.width = canvasWidth;
-  canvas.height = canvasHeight;
+  canvas.width = canvasWidth / imageMode;
+  canvas.height = canvasHeight / imageMode;
 
-  context.drawImage(originalImage, 0, 0, canvasWidth, canvasHeight);
+  context.drawImage(
+    originalImage,
+    0,
+    0,
+    canvasWidth / imageMode,
+    canvasHeight / imageMode
+  );
 
   context.globalAlpha = transparency / 100;
   context.fillStyle = color;
   context.textBaseline = "middle";
-  context.font = `${fontSize}px ${activeFontFamily}`;
-  context.fillText(watermarkText, position.x, position.y);
+  context.font = `${fontSize / imageMode}px ${activeFontFamily}`;
+  context.fillText(
+    watermarkText,
+    position.x / imageMode,
+    position.y / imageMode
+  );
 
   return canvas.toDataURL();
+};
+
+export const downloadWatermarkoImage = async (originalImage, props) => {
+  const { imageFilename, licenseKey } = props;
+
+  const isValid = true; // await checkLicense(licenseKey);
+  // console.log(isValid);
+
+  let image;
+
+  if (isValid) {
+    image = await fetch(
+      applyTextWatermarkToImage(originalImage, IMAGE_MODE.FULL, props)
+    );
+  } else {
+    image = await fetch(
+      applyTextWatermarkToImage(originalImage, IMAGE_MODE.HALF, props)
+    );
+  }
+
+  const imageBlog = await image.blob();
+  const imageURL = URL.createObjectURL(imageBlog);
+
+  const link = document.createElement("a");
+  link.href = imageURL;
+  link.download = imageFilename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 };
 
 export const checkLicense = async (licenseKey) => {
@@ -79,30 +113,4 @@ export const checkLicense = async (licenseKey) => {
 
   const content = await rawResponse.json();
   return content.success;
-};
-
-export const downloadWatermarkoImage = async (
-  watermarkedImageReference,
-  props
-) => {
-  const { imageFilename, licenseKey } = props;
-
-  const isValid = await checkLicense(licenseKey);
-  console.log(isValid);
-
-  // const watermakedImageWithText = document.querySelector(
-  //   "#watermakedImageWithText"
-  // );
-  console.log(watermarkedImageReference);
-
-  const image = await fetch(watermarkedImageReference.current.src);
-  const imageBlog = await image.blob();
-  const imageURL = URL.createObjectURL(imageBlog);
-
-  const link = document.createElement("a");
-  link.href = imageURL;
-  link.download = imageFilename;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
 };
