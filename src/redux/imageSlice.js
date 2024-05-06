@@ -7,7 +7,7 @@ const initialState = {
   type: "",
   dimensions: { height: 0, width: 0 },
   hiddenOriginalImageReference: null,
-  watermarkedImageReference: null,
+  previewImageReference: null,
 };
 
 export const imageSlice = createSlice({
@@ -32,8 +32,8 @@ export const imageSlice = createSlice({
     setHiddenOriginalImageReference: (state, action) => {
       state.hiddenOriginalImageReference = action.payload;
     },
-    setWatermarkedImageReference: (state, action) => {
-      state.watermarkedImageReference = action.payload;
+    setPreviewImageRef: (state, action) => {
+      state.previewImageReference = action.payload;
     },
   },
 });
@@ -45,7 +45,7 @@ export const {
   setFileType,
   setFileDimensions,
   setHiddenOriginalImageReference,
-  setWatermarkedImageReference,
+  setPreviewImageRef,
 } = imageSlice.actions;
 
 export default imageSlice.reducer;

@@ -3,13 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import { useDebounce } from "use-debounce";
 
-import { generateWatermarkPreview } from "../helpers/utility";
-import { setWatermarkedImageReference } from "../redux/imageSlice";
+import { generateWatermarkPreview } from "../helpers/watermark";
+import { setPreviewImageRef } from "../redux/imageSlice";
 
 const DEBOUNCE_DELAY = 250;
 
 export default function Preview() {
-  const watermarkedImageRef = useRef();
+  const previewImageRef = useRef();
   const dispatch = useDispatch();
 
   const {
@@ -36,18 +36,14 @@ export default function Preview() {
   useEffect(() => {
     if (!hiddenOriginalImageReference) return;
 
-    generateWatermarkPreview(
-      hiddenOriginalImageReference,
-      watermarkedImageRef,
-      {
-        watermarkText: debouncedWatermarkText,
-        fontSize: debouncedFontSize,
-        color: debouncedColor,
-        activeFontFamily: debouncedFontFamily,
-        transparency: transparency,
-        position: { x: debouncedLeftPosition, y: debouncedTopPosition },
-      }
-    );
+    generateWatermarkPreview(hiddenOriginalImageReference, previewImageRef, {
+      watermarkText: debouncedWatermarkText,
+      fontSize: debouncedFontSize,
+      color: debouncedColor,
+      activeFontFamily: debouncedFontFamily,
+      transparency: transparency,
+      position: { x: debouncedLeftPosition, y: debouncedTopPosition },
+    });
   }, [
     debouncedWatermarkText,
     debouncedFontSize,
@@ -61,12 +57,12 @@ export default function Preview() {
   ]);
 
   useEffect(() => {
-    dispatch(setWatermarkedImageReference(watermarkedImageRef));
+    dispatch(setPreviewImageRef(previewImageRef));
   }, []);
 
   return (
     <div className="preview">
-      <img id="watermakedImageWithText" ref={watermarkedImageRef} />
+      <img id="previewImage" ref={previewImageRef} />
     </div>
   );
 }
