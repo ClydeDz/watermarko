@@ -14,11 +14,11 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [
           "imageSlice/setHiddenOriginalImageReference",
-          "imageSlice/setWatermarkedImageReference",
+          "imageSlice/setPreviewImageRef",
         ],
         ignoredPaths: [
           "image.hiddenOriginalImageReference",
-          "image.watermarkedImageReference",
+          "image.previewImageReference",
         ],
       },
     }),

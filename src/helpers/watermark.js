@@ -11,20 +11,17 @@ const applyTextWatermarkToImage = (originalImage, imageMode, props) => {
     position,
   } = props;
 
-  const canvasWidth = originalImage.width;
-  const canvasHeight = originalImage.height;
-
   const canvas = document.createElement("canvas");
   const context = canvas.getContext("2d");
-  canvas.width = canvasWidth / imageMode;
-  canvas.height = canvasHeight / imageMode;
+  canvas.width = originalImage.width / imageMode;
+  canvas.height = originalImage.height / imageMode;
 
   context.drawImage(
     originalImage,
     0,
     0,
-    canvasWidth / imageMode,
-    canvasHeight / imageMode
+    originalImage.width / imageMode,
+    originalImage.height / imageMode
   );
 
   context.globalAlpha = transparency / 100;

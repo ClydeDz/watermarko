@@ -2,8 +2,8 @@
   display: flex;
   justify-content: center;
   margin-top: 18px;
-}
 
-#previewImage {
-  max-height: 75vh;
+  img {
+    max-height: 75vh;
+  }
 }

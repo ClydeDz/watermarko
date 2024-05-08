@@ -1,36 +1,59 @@
 import { useSelector, useDispatch } from "react-redux";
-import { setLicenseKey } from "../redux/licenseSlice";
+import { setIsLicenseValid, setLicenseKey } from "../redux/licenseSlice";
 import "./license.css";
 import Input, { INPUT_VARIANTS } from "../blocks/input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NewTabIcon from "../icons/newTabIcon";
+import { useDebounce } from "use-debounce";
+import { DEBOUNCE_DELAY } from "../helpers/constant";
+import { checkLicense } from "../helpers/license";
 
 export default function License() {
   const dispatch = useDispatch();
-  const { licenseKey } = useSelector((state) => state.license);
+  const { licenseKey, isLicenseValid } = useSelector((state) => state.license);
   const [isSelected, setIsSelected] = useState(false);
+  const [debouncedLicenseKey] = useDebounce(licenseKey, DEBOUNCE_DELAY);
+
+  const checkIsLicenseValid = async () => {
+    const isValid = await checkLicense(debouncedLicenseKey);
+    dispatch(setIsLicenseValid(isValid));
+  };
+
+  useEffect(() => {
+    checkIsLicenseValid();
+  }, [debouncedLicenseKey]);
 
   return (
     <div className="license">
       <button onClick={(e) => setIsSelected(!isSelected)}>
-        Download full size
+        {isLicenseValid
+          ? "Thanks for purchasing the license"
+          : "Download full size"}
       </button>
       {isSelected && (
         <div className="popup">
           <Input
-            label="License key"
+            label={`License key ${isLicenseValid ? "(valid)" : ""}`}
             identifier="licensekey"
             variant={INPUT_VARIANTS.REGULAR}
             value={licenseKey}
             onChange={(e) => dispatch(setLicenseKey(e.target.value))}
           />
-          <hr />
-          <h2>Where to buy a license?</h2>
-          <p>scscscsc</p>
-          <button>
-            Buy a license on Gumroad
-            <NewTabIcon />
-          </button>
+          {!isLicenseValid && (
+            <>
+              <hr />
+              <h2>Where to buy a license?</h2>
+              <p>
+                You can purchase a perpetual license from Gumroad. Click the
+                button below and make the purchase to get your license key. Come
+                back here and insert the key above to validate it.
+              </p>
+              <button>
+                Buy a license on Gumroad
+                <NewTabIcon />
+              </button>
+            </>
+          )}
         </div>
       )}
     </div>

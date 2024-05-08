@@ -1,12 +1,11 @@
 import "./preview.css";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useDebounce } from "use-debounce";
 
 import { generateWatermarkPreview } from "../helpers/watermark";
 import { setPreviewImageRef } from "../redux/imageSlice";
-
-const DEBOUNCE_DELAY = 250;
+import { DEBOUNCE_DELAY } from "../helpers/constant";
 
 export default function Preview() {
   const previewImageRef = useRef();
@@ -62,7 +61,7 @@ export default function Preview() {
 
   return (
     <div className="preview">
-      <img id="previewImage" ref={previewImageRef} />
+      <img ref={previewImageRef} />
     </div>
   );
 }
