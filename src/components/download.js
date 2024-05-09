@@ -18,6 +18,8 @@ export default function Download() {
   const { licenseKey } = useSelector((state) => state.license);
 
   const onDownloadBtnClick = () => {
+    if (!hiddenOriginalImageReference) return;
+
     downloadWatermarkImage(hiddenOriginalImageReference, {
       imageFilename: `watermarko-${name}.${extension}`,
       licenseKey,

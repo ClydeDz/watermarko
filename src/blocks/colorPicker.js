@@ -1,21 +1,48 @@
 import ColorPickerIcon from "../icons/colorPickerIcon";
 import { TwitterPicker } from "react-color";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import "./colorPicker.css";
 
 export default function ColorPicker(props) {
   const { value, onColorChange } = props;
+  const colorPickerTriggerRef = useRef();
+  const colorPickerPopupRef = useRef();
   const [isSelected, setIsSelected] = useState(false);
+
+  const closeDropdown = (e) => {
+    const isTriggerClicked = colorPickerTriggerRef.current?.contains(e.target);
+    const isPopupClicked = colorPickerPopupRef.current?.contains(e.target);
+
+    !isTriggerClicked && !isPopupClicked && setIsSelected(false);
+  };
+
+  const closeDropdownOnEscape = (e) => {
+    if (e.key !== "Escape") return;
+
+    setIsSelected(false);
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", closeDropdown);
+    document.addEventListener("keydown", closeDropdownOnEscape);
+    return () => {
+      document.removeEventListener("click", closeDropdown);
+      document.removeEventListener("keydown", closeDropdownOnEscape);
+    };
+  }, []);
 
   return (
     <div className="colorPicker">
-      <button onClick={() => setIsSelected(!isSelected)}>
+      <button
+        onClick={() => setIsSelected(!isSelected)}
+        ref={colorPickerTriggerRef}
+      >
         <ColorPickerIcon fontColor={value} />
       </button>
 
       {isSelected && (
-        <div className="popup">
+        <div className="popup" ref={colorPickerPopupRef}>
           <TwitterPicker
             color={value}
             className="twitterPicker"
