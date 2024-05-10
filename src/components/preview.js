@@ -1,15 +1,17 @@
 import "./preview.css";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDebounce } from "use-debounce";
 
 import { generateWatermarkPreview } from "../helpers/watermark";
 import { setPreviewImageRef } from "../redux/imageSlice";
 import { DEBOUNCE_DELAY } from "../helpers/constant";
+import { Tooltip } from "./tooltip";
 
 export default function Preview() {
   const previewImageRef = useRef();
   const dispatch = useDispatch();
+  const [isSelected, setIsSelected] = useState(false);
 
   const {
     watermarkText,
@@ -59,9 +61,14 @@ export default function Preview() {
     dispatch(setPreviewImageRef(previewImageRef));
   }, []);
 
+  const onImageClick = () => {
+    setIsSelected(!isSelected);
+  };
+
   return (
     <div className="preview">
-      <img ref={previewImageRef} />
+      <img ref={previewImageRef} onClick={onImageClick} />
+      {isSelected && <Tooltip />}
     </div>
   );
 }
