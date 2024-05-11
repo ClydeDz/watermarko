@@ -3,7 +3,7 @@ import { TwitterPicker } from "react-color";
 import { useRef, useState } from "react";
 
 import "./colorPicker.css";
-import { useClosePopup } from "../helpers/useFriendStatus";
+import { useClosePopup } from "../helpers/useClosePopup";
 
 export default function ColorPicker(props) {
   const { value, onColorChange } = props;

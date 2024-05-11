@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import "./slider.css";
 import Input, { INPUT_VARIANTS } from "./input";
 import OpacityIcon from "../icons/opacity";
-import { useClosePopup } from "../helpers/useFriendStatus";
+import { useClosePopup } from "../helpers/useClosePopup";
 
 export default function TransparencySlider(props) {
   const { value, onChange } = props;

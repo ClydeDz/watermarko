@@ -7,7 +7,7 @@ import NewTabIcon from "../icons/newTabIcon";
 import { useDebounce } from "use-debounce";
 import { DEBOUNCE_DELAY } from "../helpers/constant";
 import { checkLicense } from "../helpers/license";
-import { useClosePopup } from "../helpers/useFriendStatus";
+import { useClosePopup } from "../helpers/useClosePopup";
 
 export default function License() {
   const dispatch = useDispatch();
