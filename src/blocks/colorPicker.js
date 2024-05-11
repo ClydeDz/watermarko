@@ -1,8 +1,9 @@
 import ColorPickerIcon from "../icons/colorPickerIcon";
 import { TwitterPicker } from "react-color";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import "./colorPicker.css";
+import { useClosePopup } from "../helpers/useFriendStatus";
 
 export default function ColorPicker(props) {
   const { value, onColorChange } = props;
@@ -10,27 +11,7 @@ export default function ColorPicker(props) {
   const colorPickerPopupRef = useRef();
   const [isSelected, setIsSelected] = useState(false);
 
-  const closeDropdown = (e) => {
-    const isTriggerClicked = colorPickerTriggerRef.current?.contains(e.target);
-    const isPopupClicked = colorPickerPopupRef.current?.contains(e.target);
-
-    !isTriggerClicked && !isPopupClicked && setIsSelected(false);
-  };
-
-  const closeDropdownOnEscape = (e) => {
-    if (e.key !== "Escape") return;
-
-    setIsSelected(false);
-  };
-
-  useEffect(() => {
-    document.addEventListener("click", closeDropdown);
-    document.addEventListener("keydown", closeDropdownOnEscape);
-    return () => {
-      document.removeEventListener("click", closeDropdown);
-      document.removeEventListener("keydown", closeDropdownOnEscape);
-    };
-  }, []);
+  useClosePopup(colorPickerTriggerRef, colorPickerPopupRef, setIsSelected);
 
   return (
     <div className="colorPicker">

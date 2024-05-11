@@ -7,6 +7,7 @@ import NewTabIcon from "../icons/newTabIcon";
 import { useDebounce } from "use-debounce";
 import { DEBOUNCE_DELAY } from "../helpers/constant";
 import { checkLicense } from "../helpers/license";
+import { useClosePopup } from "../helpers/useFriendStatus";
 
 export default function License() {
   const dispatch = useDispatch();
@@ -16,6 +17,8 @@ export default function License() {
   const [isSelected, setIsSelected] = useState(false);
   const [debouncedLicenseKey] = useDebounce(licenseKey, DEBOUNCE_DELAY);
 
+  useClosePopup(licenseTriggerRef, licensePopupRef, setIsSelected);
+
   const checkIsLicenseValid = async () => {
     const isValid =
       debouncedLicenseKey.length < 5
@@ -23,28 +26,6 @@ export default function License() {
         : await checkLicense(debouncedLicenseKey);
     dispatch(setIsLicenseValid(isValid));
   };
-
-  const closeDropdown = (e) => {
-    const isTriggerClicked = licenseTriggerRef.current?.contains(e.target);
-    const isPopupClicked = licensePopupRef.current?.contains(e.target);
-
-    !isTriggerClicked && !isPopupClicked && setIsSelected(false);
-  };
-
-  const closeDropdownOnEscape = (e) => {
-    if (e.key !== "Escape") return;
-
-    setIsSelected(false);
-  };
-
-  useEffect(() => {
-    document.addEventListener("click", closeDropdown);
-    document.addEventListener("keydown", closeDropdownOnEscape);
-    return () => {
-      document.removeEventListener("click", closeDropdown);
-      document.removeEventListener("keydown", closeDropdownOnEscape);
-    };
-  }, []);
 
   useEffect(() => {
     checkIsLicenseValid();
