@@ -3,7 +3,6 @@ import { setIsLicenseValid, setLicenseKey } from "../redux/licenseSlice";
 import "./license.css";
 import Input, { INPUT_VARIANTS } from "../blocks/input";
 import { useEffect, useRef, useState } from "react";
-import NewTabIcon from "../icons/newTabIcon";
 import { useDebounce } from "use-debounce";
 import { DEBOUNCE_DELAY } from "../helpers/constant";
 import { checkLicense } from "../helpers/license";
@@ -59,10 +58,7 @@ export default function License() {
                 button below and make the purchase to get your license key. Come
                 back here and insert the key above to validate it.
               </p>
-              <button>
-                Buy a license on Gumroad
-                <NewTabIcon />
-              </button>
+              <button>Buy a license on Gumroad</button>
             </>
           )}
         </div>

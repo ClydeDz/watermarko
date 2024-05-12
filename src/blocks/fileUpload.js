@@ -39,8 +39,6 @@ export default function FileUpload(props) {
     const fileName = name.substr(0, name.lastIndexOf("."));
     const fileExtension = name.substr(name.lastIndexOf(".") + 1);
 
-    console.log(fileName, fileExtension, fileSize);
-
     dispatch(setFilename(fileName));
     dispatch(setFileExtension(fileExtension));
     dispatch(setFileSize(fileSize));
@@ -58,11 +56,10 @@ export default function FileUpload(props) {
         hidden
         onChange={(e) => onFileUpload(e)}
       />
-      <label for="fileUpload">
+      <label htmlFor="fileUpload">
         {size > 0 ? "Upload another image" : "Upload an image"}
       </label>
       <img hidden ref={hiddenOriginalImageRef} onLoad={onImageLoad} />
-      <img id="originalImage" hidden />
     </div>
   );
 }

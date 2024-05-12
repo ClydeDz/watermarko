@@ -9,34 +9,34 @@ export default function UpDownIcon() {
         className="icon"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g clip-path="url(#clip0_27_20)">
+        <g clipPath="url(#clip0_27_20)">
           <path
             d="M13.75 3.25V16.75"
             stroke="black"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M8.5 14.5L6.25 16.75L4 14.5"
             stroke="black"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M6.25 16.75V3.25"
             stroke="black"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M16 5.5L13.75 3.25L11.5 5.5"
             stroke="black"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </g>
         <defs>
