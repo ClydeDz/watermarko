@@ -5,15 +5,17 @@ import {
   setFileSize,
   setFileType,
   setFileDimensions,
+  setHiddenOriginalImageReference,
 } from "../redux/imageSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { fileToDataUri } from "../helpers/utility";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export default function FileUpload(props) {
   const { onChange } = props;
   const dispatch = useDispatch();
   const hiddenOriginalImageRef = useRef();
+  const [uploadedImage, setUploadedImage] = useState(undefined);
   const { size } = useSelector((state) => state.image);
 
   const onFileUpload = async (e) => {
@@ -21,7 +23,19 @@ export default function FileUpload(props) {
 
     if (!file) return;
 
-    const { name, size: fileSize, type: fileType } = file;
+    setUploadedImage(file);
+    hiddenOriginalImageRef.current.src = await fileToDataUri(file);
+  };
+
+  const onImageLoad = () => {
+    dispatch(
+      setFileDimensions({
+        height: hiddenOriginalImageRef.current.height,
+        width: hiddenOriginalImageRef.current.width,
+      })
+    );
+
+    const { name, size: fileSize, type: fileType } = uploadedImage;
     const fileName = name.substr(0, name.lastIndexOf("."));
     const fileExtension = name.substr(name.lastIndexOf(".") + 1);
 
@@ -32,18 +46,7 @@ export default function FileUpload(props) {
     dispatch(setFileSize(fileSize));
     dispatch(setFileType(fileType));
 
-    hiddenOriginalImageRef.current.src = await fileToDataUri(file);
-
     onChange(hiddenOriginalImageRef.current);
-  };
-
-  const onImageLoad = () => {
-    dispatch(
-      setFileDimensions({
-        height: hiddenOriginalImageRef.current.height,
-        width: hiddenOriginalImageRef.current.width,
-      })
-    );
   };
 
   return (

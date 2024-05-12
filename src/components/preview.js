@@ -35,6 +35,7 @@ export default function Preview() {
   const [debouncedLeftPosition] = useDebounce(leftPosition, DEBOUNCE_DELAY);
 
   useEffect(() => {
+
     if (!hiddenOriginalImageReference) return;
 
     generateWatermarkPreview(hiddenOriginalImageReference, previewImageRef, {
@@ -53,8 +54,8 @@ export default function Preview() {
     debouncedTransparency,
     debouncedTopPosition,
     debouncedLeftPosition,
-    name,
     hiddenOriginalImageReference,
+    name,
   ]);
 
   useEffect(() => {
