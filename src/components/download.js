@@ -26,7 +26,7 @@ export default function Download() {
       watermarkText,
       fontSize,
       color,
-      activeFontFamily: fontFamily,
+      fontFamily,
       transparency,
       position: { x: leftPosition, y: topPosition },
     });

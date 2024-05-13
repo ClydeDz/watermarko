@@ -35,15 +35,14 @@ export default function Preview() {
   const [debouncedLeftPosition] = useDebounce(leftPosition, DEBOUNCE_DELAY);
 
   useEffect(() => {
-
     if (!hiddenOriginalImageReference) return;
 
     generateWatermarkPreview(hiddenOriginalImageReference, previewImageRef, {
       watermarkText: debouncedWatermarkText,
       fontSize: debouncedFontSize,
       color: debouncedColor,
-      activeFontFamily: debouncedFontFamily,
-      transparency: transparency,
+      fontFamily: debouncedFontFamily,
+      transparency: debouncedTransparency,
       position: { x: debouncedLeftPosition, y: debouncedTopPosition },
     });
   }, [

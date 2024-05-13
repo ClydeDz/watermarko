@@ -5,7 +5,7 @@ const applyTextWatermarkToImage = (originalImage, imageMode, props) => {
   const {
     watermarkText,
     fontSize,
-    activeFontFamily,
+    fontFamily,
     color,
     transparency,
     position,
@@ -27,7 +27,7 @@ const applyTextWatermarkToImage = (originalImage, imageMode, props) => {
   context.globalAlpha = transparency / 100;
   context.fillStyle = color;
   context.textBaseline = "middle";
-  context.font = `${fontSize / imageMode}px ${activeFontFamily}`;
+  context.font = `${fontSize / imageMode}px ${fontFamily}`;
   context.fillText(
     watermarkText,
     position.x / imageMode,
