@@ -6,10 +6,11 @@
     background-color: black;
     color: white;
     padding: 9px;
-    border-radius: 6px;
+    border-radius: 60px;
     position: absolute;
-    right: 0;
+    right: 9px;
     width: max-content;
     top: 20px;
+    opacity: 0.9;
   }
 }
