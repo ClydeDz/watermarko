@@ -2,14 +2,8 @@ import { IMAGE_MODE } from "./constant";
 import { checkLicense } from "./license";
 
 const applyTextWatermarkToImage = (originalImage, imageMode, props) => {
-  const {
-    watermarkText,
-    fontSize,
-    fontFamily,
-    color,
-    transparency,
-    position,
-  } = props;
+  const { watermarkText, fontSize, fontFamily, color, transparency, position } =
+    props;
 
   const canvas = document.createElement("canvas");
   const context = canvas.getContext("2d");
@@ -50,11 +44,12 @@ export const generateWatermarkPreview = (
 };
 
 export const downloadWatermarkImage = async (originalImage, props) => {
-  const { imageFilename, licenseKey } = props;
+  const { imageFilename, imageFileExtension, licenseKey } = props;
 
   const isValid = await checkLicense(licenseKey);
 
   let image;
+  let sizeBasedFilenameIdentifier = "";
 
   if (isValid) {
     image = await fetch(
@@ -64,6 +59,7 @@ export const downloadWatermarkImage = async (originalImage, props) => {
     image = await fetch(
       applyTextWatermarkToImage(originalImage, IMAGE_MODE.HALF, props)
     );
+    sizeBasedFilenameIdentifier = "-half-size";
   }
 
   const imageBlog = await image.blob();
@@ -71,7 +67,7 @@ export const downloadWatermarkImage = async (originalImage, props) => {
 
   const link = document.createElement("a");
   link.href = imageURL;
-  link.download = imageFilename;
+  link.download = `watermarko-${imageFilename}${sizeBasedFilenameIdentifier}.${imageFileExtension}`;
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);

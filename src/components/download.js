@@ -21,7 +21,8 @@ export default function Download() {
     if (!hiddenOriginalImageReference) return;
 
     downloadWatermarkImage(hiddenOriginalImageReference, {
-      imageFilename: `watermarko-${name}.${extension}`,
+      imageFilename: name,
+      imageFileExtension: extension,
       licenseKey,
       watermarkText,
       fontSize,
