@@ -1,5 +1,5 @@
 import { IMAGE_MODE } from "./constant";
-// import { checkLicense } from "./license";
+import { checkLicense } from "./license";
 
 const applyTextWatermarkToImage = (originalImage, imageMode, props) => {
   const {
@@ -52,9 +52,7 @@ export const generateWatermarkPreview = (
 export const downloadWatermarkImage = async (originalImage, props) => {
   const { imageFilename, licenseKey } = props;
 
-  const isValid = true;
-  // await checkLicense(licenseKey);
-  // console.log(isValid);
+  const isValid = await checkLicense(licenseKey);
 
   let image;
 
