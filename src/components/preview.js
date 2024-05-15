@@ -59,6 +59,7 @@ export default function Preview() {
 
   useEffect(() => {
     dispatch(setPreviewImageRef(previewImageRef));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onImageClick = () => {
@@ -67,7 +68,7 @@ export default function Preview() {
 
   return (
     <div className="preview">
-      <img ref={previewImageRef} onClick={onImageClick} />
+      <img ref={previewImageRef} onClick={onImageClick} alt="Preview" />
       {isSelected && <Tooltip />}
     </div>
   );

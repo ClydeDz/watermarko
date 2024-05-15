@@ -22,5 +22,6 @@ export const useClosePopup = (triggerRef, popupRef, closePopup) => {
       document.removeEventListener("click", closeDropdownOnClick);
       document.removeEventListener("keydown", closeDropdownOnEscape);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };

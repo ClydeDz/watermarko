@@ -5,7 +5,6 @@ import {
   setFileSize,
   setFileType,
   setFileDimensions,
-  setHiddenOriginalImageReference,
 } from "../redux/imageSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { fileToDataUri } from "../helpers/utility";
@@ -59,7 +58,12 @@ export default function FileUpload(props) {
       <label htmlFor="fileUpload">
         {size > 0 ? "Upload another image" : "Upload an image"}
       </label>
-      <img hidden ref={hiddenOriginalImageRef} onLoad={onImageLoad} />
+      <img
+        hidden
+        ref={hiddenOriginalImageRef}
+        onLoad={onImageLoad}
+        alt="Hidden original"
+      />
     </div>
   );
 }

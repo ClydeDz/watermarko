@@ -28,6 +28,7 @@ export default function License() {
 
   useEffect(() => {
     checkIsLicenseValid();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedLicenseKey]);
 
   return (
