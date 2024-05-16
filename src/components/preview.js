@@ -68,7 +68,7 @@ export default function Preview() {
 
   return (
     <div className="preview">
-      <img ref={previewImageRef} onClick={onImageClick} alt="Preview" />
+      <img ref={previewImageRef} onClick={onImageClick} alt="" />
       {isSelected && <Tooltip />}
     </div>
   );
