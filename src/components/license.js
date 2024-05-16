@@ -31,6 +31,11 @@ export default function License() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedLicenseKey]);
 
+  const openLinkInNewTab = (url) => {
+    const newTab = window.open(url, "_blank", "noopener,noreferrer");
+    if (newTab) newTab.opener = null;
+  };
+
   return (
     <div className="license">
       <button
@@ -59,7 +64,15 @@ export default function License() {
                 button below and make the purchase to get your license key. Come
                 back here and insert the key above to validate it.
               </p>
-              <button>Buy a license on Gumroad</button>
+              <button
+                onClick={() =>
+                  openLinkInNewTab(
+                    "https://clydedsouza.gumroad.com/l/watermarko"
+                  )
+                }
+              >
+                Buy a license on Gumroad
+              </button>
             </>
           )}
         </div>
