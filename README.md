@@ -8,4 +8,8 @@ Via the [website](https://clydedz.github.io/watermarko/).
 
 ## Other notes
 
+Responsiveness and accessibility is not implemented yet.
+
+## Credits
+
 Watermarko © 2024 [Clyde D'Souza](https://clydedsouza.net)

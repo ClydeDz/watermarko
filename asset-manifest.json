@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "https://clydedz.github.io/watermarko/static/css/main.9c41aeb0.css",
-    "main.js": "https://clydedz.github.io/watermarko/static/js/main.6fb626cf.js",
+    "main.css": "https://clydedz.github.io/watermarko/static/css/main.c393bf6b.css",
+    "main.js": "https://clydedz.github.io/watermarko/static/js/main.7774d62a.js",
     "static/media/Watermarko.svg": "https://clydedz.github.io/watermarko/static/media/Watermarko.f1541bc7095cfe55949f23d53ffa082d.svg",
     "index.html": "https://clydedz.github.io/watermarko/index.html",
-    "main.9c41aeb0.css.map": "https://clydedz.github.io/watermarko/static/css/main.9c41aeb0.css.map",
-    "main.6fb626cf.js.map": "https://clydedz.github.io/watermarko/static/js/main.6fb626cf.js.map"
+    "main.c393bf6b.css.map": "https://clydedz.github.io/watermarko/static/css/main.c393bf6b.css.map",
+    "main.7774d62a.js.map": "https://clydedz.github.io/watermarko/static/js/main.7774d62a.js.map"
   },
   "entrypoints": [
-    "static/css/main.9c41aeb0.css",
-    "static/js/main.6fb626cf.js"
+    "static/css/main.c393bf6b.css",
+    "static/js/main.7774d62a.js"
   ]
 }
