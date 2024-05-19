@@ -16,4 +16,9 @@
   button:hover {
     background-color: var(--white-hover);
   }
+
+  button[disabled] {
+    background-color: var(--white-hover);
+    cursor: unset;
+  }
 }

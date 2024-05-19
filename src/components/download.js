@@ -12,7 +12,7 @@ export default function Download() {
     topPosition,
     leftPosition,
   } = useSelector((state) => state.editor);
-  const { name, extension, hiddenOriginalImageReference } = useSelector(
+  const { name, extension, size, hiddenOriginalImageReference } = useSelector(
     (state) => state.image
   );
   const { licenseKey } = useSelector((state) => state.license);
@@ -35,7 +35,7 @@ export default function Download() {
 
   return (
     <div className="download">
-      <button type="button" onClick={onDownloadBtnClick}>
+      <button type="button" onClick={onDownloadBtnClick} disabled={size <= 0}>
         Download
       </button>
     </div>
